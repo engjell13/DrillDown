@@ -1,7 +1,8 @@
 import "./App.css";
+import { Layout } from "./components/layout";
 
 function App() {
-  return <h2>Vite React Tailwindcss</h2>;
+  return <Layout />;
 }
 
 export default App;
