@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <h1>Vite React Tailwindcss</h1>;
+  return <h2>Vite React Tailwindcss</h2>;
 }
 
 export default App;
