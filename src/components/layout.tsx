@@ -2,29 +2,20 @@ import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 const Layout = (): JSX.Element => {
-  const [users, setUsers] = useState<any>(null);
+  const [users, setUsers] = useState<ResponseApi | undefined>(undefined);
+
+  type ResponseApi = {
+    Nation: string;
+    Year: number;
+    Population: number;
+  };
 
   useEffect(() => {
     fetch("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
       .then((res) => res.json())
-      .then((data: any) => setUsers(data));
+      .then((data: ResponseApi) => setUsers(data));
   }, []);
-
-  const data = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-      {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
+  console.log(users);
 
   return (
     <div className="text-5xl font-bold text-center">
