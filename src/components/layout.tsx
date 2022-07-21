@@ -1,25 +1,17 @@
-import { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
+import { useFetch } from "./Api/useFetch";
 
 const Layout = (): JSX.Element => {
-  const [users, setUsers] = useState<ResponseApi | undefined>(undefined);
+  const [dataUsa] = useFetch(
+    "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+  );
 
-  type ResponseApi = {
-    Nation: string;
-    Year: number;
-    Population: number;
-  };
-
-  useEffect(() => {
-    fetch("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
-      .then((res) => res.json())
-      .then((data: ResponseApi) => setUsers(data));
-  }, []);
-  console.log(users);
-
+  console.log(dataUsa);
   return (
-    <div className="text-5xl font-bold text-center">
-      <h1>Doughnut Chart</h1>
+    <div className="text-5xl text-center">
+      <h1>asdasd</h1>
+      {dataUsa?.data.map((data: any, index: number) => {
+        return <h1 key={index}>{data?.Population}</h1>;
+      })}
     </div>
   );
 };
