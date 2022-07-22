@@ -21,12 +21,18 @@ const BarChart = () => {
     labels: dataUsa?.data.map((x) => x.Year),
     datasets: [
       {
-        label: `Population over the years in ${dataUsa?.Nation}`,
+        label: "based on numbers",
         data: dataUsa?.data.map((x) => x.Population),
         backgroundColor: [" #8F00FF", "#8F00FF", " #8F00FF", " #8F00FF"],
-        borderColor: [" #8F00FF", "#8F00FF", " #8F00FF", " #8F00FF"],
         borderWidth: 1,
         borderRadius: 10,
+        hoverBackgroundColor: [
+          "#AF69EE",
+          "#AF69EE",
+          "#AF69EE",
+          "#AF69EE",
+          "#AF69EE",
+        ],
       },
     ],
   };
@@ -34,7 +40,7 @@ const BarChart = () => {
     maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: true,
+        beginAtZero: false,
       },
     },
   };
