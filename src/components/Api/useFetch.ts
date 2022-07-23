@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ResponseApi } from "./types";
 
 export const useFetch = (url: string) => {
   const [dataUsa, setDataUsa] = useState<any | undefined>(undefined);

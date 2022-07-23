@@ -4,16 +4,25 @@ import {
   CategoryScale,
   LinearScale,
   ArcElement,
+  PointElement,
+  LineElement,
 } from "chart.js";
 import classnames from "classnames";
 import { useContext } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { ThemeContext } from "../../ThemeContext";
 import { useFetch } from "../Api/useFetch";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  PointElement,
+  LineElement
+);
 
-const BarChart = () => {
+const LineChart = () => {
   const theme = useContext(ThemeContext);
   const [dataUsa] = useFetch(
     "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
@@ -26,9 +35,8 @@ const BarChart = () => {
       {
         label: "based on numbers",
         data: dataUsa?.data.map((d) => d.Population),
-        backgroundColor: ["#6366f1"],
-        borderRadius: 10,
-        hoverBackgroundColor: ["#818cf8"],
+        backgroundColor: "#6366f1",
+        borderColor: "#6366f1",
       },
     ],
   };
@@ -65,14 +73,8 @@ const BarChart = () => {
         label: "based on numbers",
         data: dataUsa?.data.map((d) => d.Population),
         backgroundColor: ["#ea580c"],
-        borderRadius: 10,
-        hoverBackgroundColor: [
-          "#e0e7ff",
-          "#e0e7ff",
-          "#e0e7ff",
-          "#e0e7ff",
-          "#e0e7ff",
-        ],
+        borderColor: "#ea580c",
+        tension: 0.5,
       },
     ],
   };
@@ -109,7 +111,7 @@ const BarChart = () => {
           { "border-gray-50": theme !== "light" }
         )}
       >
-        <Bar
+        <Line
           data={theme !== "light" ? dataDark : dataLight}
           height={400}
           options={theme !== "light" ? optionsDark : optionsLight}
@@ -119,4 +121,4 @@ const BarChart = () => {
   );
 };
 
-export { BarChart };
+export { LineChart };
